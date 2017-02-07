@@ -42,6 +42,14 @@ public class Task {
         return taskType;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,4 +92,8 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 }

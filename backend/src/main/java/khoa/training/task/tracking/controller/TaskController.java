@@ -29,7 +29,8 @@ public class TaskController {
         if (taskId == null) {
             return null;
         }
-        return null;
+        Task task = taskRepository.findOne(taskId);
+        return task;
     }
 
     @JsonApiFindAll
