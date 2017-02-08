@@ -8,6 +8,7 @@ import io.katharsis.repository.annotations.JsonApiSave;
 import khoa.training.task.tracking.model.Task;
 import khoa.training.task.tracking.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -19,6 +20,18 @@ import java.util.List;
 @Controller
 public class TaskController {
 
+    /**
+     * Accept both POST and PATCH operation.
+     *   <p>For POST, it will be an insert new.
+     *     Url: http://host:port/api/tasks. Ex: http://localhost:9999/api/tasks
+     *  </p>
+     *   <p>For PATCH, it will be an update. This <strong>requires</strong> method annotated with <strong><i>@JsonApiFindOne</i></strong>
+     *   <li>Url: http://host:port/api/tasks/{id}. Ex: http://localhost:9999/api/tasks/1</li>
+     *     </p>
+     * @param entity
+     * @param <S>
+     * @return
+     */
     @JsonApiSave
     public <S extends Task> S insert(S entity) {
         return taskRepository.save(entity);
@@ -34,9 +47,10 @@ public class TaskController {
     }
 
     @JsonApiFindAll
-    public List<Task> findAll()
+    public List<Task> findAll(QueryParams requestParams)
     {
-        return taskRepository.findAll();
+        Sort.Order sortOrder = new Sort.Order(Sort.Direction.ASC,"taskId");
+        return taskRepository.findAll(new Sort(sortOrder));
     }
 
     @Autowired

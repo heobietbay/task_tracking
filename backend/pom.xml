@@ -8,7 +8,6 @@
   <name>backend</name>
   <properties>
     <slf4j-log4j12.version>1.7.21</slf4j-log4j12.version>
-    <microsoftsql.version>4.0</microsoftsql.version>
     <hibernate.core.version>4.3.10.Final</hibernate.core.version>
     <java.version>1.8</java.version>
     <reflections.version>0.9.9</reflections.version>
