@@ -1,7 +1,9 @@
 package khoa.training.task.tracking.model;
 
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiIncludeByDefault;
 import io.katharsis.resource.annotations.JsonApiResource;
+import io.katharsis.resource.annotations.JsonApiToOne;
 
 import javax.persistence.*;
 
@@ -61,6 +63,8 @@ public class Employee {
     @Column(name = "name",nullable = false,length = 20)
     private String name;
 
+    @JsonApiToOne
+    @JsonApiIncludeByDefault
     @ManyToOne
     @JoinColumn(name = "employee_type_id")
     private EmployeeType employeeType;
